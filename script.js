@@ -13,17 +13,19 @@
 
         // Navbar Glass Effect
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                navbar.classList.add('glass-nav', 'shadow-sm');
-                navbar.classList.remove('py-4');
-                navbar.classList.add('py-2');
-            } else {
-                navbar.classList.remove('glass-nav', 'shadow-sm');
-                navbar.classList.remove('py-2');
-                navbar.classList.add('py-4');
-            }
-        });
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('glass-nav', 'shadow-sm');
+                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-2');
+                } else {
+                    navbar.classList.remove('glass-nav', 'shadow-sm');
+                    navbar.classList.remove('py-2');
+                    navbar.classList.add('py-4');
+                }
+            });
+        }
 
         // ==================== منطق سبد خرید (localStorage) ====================
         const CART_KEY = 'vitapure_cart';
@@ -67,6 +69,7 @@
         }
 
         function updateCartBadge() {
+            if (!cartBadge) return;
             const cart = getCart();
             const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
             cartBadge.innerText = totalQty;
@@ -97,8 +100,10 @@
             saveCart(cart);
 
             // افکت کوچک روی نشان سبد خرید
-            cartBadge.style.transform = 'scale(1.3)';
-            setTimeout(() => { cartBadge.style.transform = 'scale(1)'; }, 200);
+            if (cartBadge) {
+                cartBadge.style.transform = 'scale(1.3)';
+                setTimeout(() => { cartBadge.style.transform = 'scale(1)'; }, 200);
+            }
 
             // بازخورد کوتاه روی خود دکمه
             const span = btn.querySelector('span');
@@ -190,6 +195,94 @@
 
         // نمایش تعداد سبد خرید هنگام بارگذاری اولیه صفحه (اگر قبلاً چیزی ذخیره شده)
         document.addEventListener('DOMContentLoaded', updateCartBadge);
+
+        // ==================== منطق صفحه تسویه‌حساب (checkout.html) ====================
+
+        function renderCheckoutSummary() {
+            const summaryEl = document.getElementById('checkout-summary');
+            const totalEl = document.getElementById('checkout-total');
+            const emptyMsg = document.getElementById('checkout-empty');
+            const formSection = document.getElementById('checkout-form-section');
+            if (!summaryEl) return; // فقط روی صفحه checkout اجرا شود
+
+            const cart = getCart();
+
+            if (cart.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                formSection.classList.add('hidden');
+                summaryEl.innerHTML = '';
+                totalEl.innerText = '';
+                return;
+            }
+
+            emptyMsg.classList.add('hidden');
+            formSection.classList.remove('hidden');
+
+            summaryEl.innerHTML = cart.map(item => `
+                <div class="flex items-center gap-3 py-3">
+                    <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-contain bg-gray-50 rounded-lg flex-shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-800 truncate">${item.name}</p>
+                        <p class="text-xs text-gray-400">تعداد: ${toPersianDigits(item.qty)}</p>
+                    </div>
+                    <span class="text-sm font-bold text-gray-900 flex-shrink-0">${formatPriceFa(item.price * item.qty)} تومان</span>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+            totalEl.innerText = formatPriceFa(total) + ' تومان';
+        }
+
+        function generateOrderCode() {
+            const num = Math.floor(100000 + Math.random() * 899999);
+            return 'VP-' + toPersianDigits(num);
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('checkout-name').value.trim();
+            const phone = document.getElementById('checkout-phone').value.trim();
+            const address = document.getElementById('checkout-address').value.trim();
+
+            if (name.length < 3) {
+                alert('لطفاً نام و نام‌خانوادگی معتبر وارد کنید.');
+                return;
+            }
+            if (!/^0\d{10}$/.test(toEnglishDigits(phone))) {
+                alert('لطفاً شماره موبایل را به‌درستی وارد کنید (مثال: 09123456789).');
+                return;
+            }
+            if (address.length < 10) {
+                alert('لطفاً آدرس کامل‌تری وارد کنید.');
+                return;
+            }
+
+            const cart = getCart();
+            if (cart.length === 0) {
+                alert('سبد خرید شما خالی است.');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+            const orderCode = generateOrderCode();
+
+            // نمایش صفحه تایید سفارش
+            document.getElementById('checkout-order-code').innerText = orderCode;
+            document.getElementById('checkout-order-total').innerText = formatPriceFa(total) + ' تومان';
+            document.getElementById('checkout-main-view').classList.add('hidden');
+            document.getElementById('checkout-success-view').classList.remove('hidden');
+
+            // پاک کردن سبد خرید
+            localStorage.removeItem(CART_KEY);
+            updateCartBadge();
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCheckoutSummary);
+        // ==================== پایان منطق صفحه تسویه‌حساب ====================
+
 
 
         // Slider Drag Functionality

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسویه‌حساب | VitaPure</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP (برای هماهنگی با script.js مشترک) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- نوار ساده بالای صفحه -->
+    <nav id="navbar" class="w-full bg-white border-b border-gray-100 py-4">
+        <div class="max-w-5xl mx-auto px-6 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                VitaPure
+            </a>
+            <a href="index.html" class="text-sm text-gray-500 hover:text-brand transition-colors flex items-center gap-1">
+                بازگشت به فروشگاه
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-5xl mx-auto px-6 py-12">
+
+        <!-- ===================== نمای اصلی تسویه‌حساب ===================== -->
+        <div id="checkout-main-view">
+
+            <h1 class="text-2xl font-bold text-gray-900 mb-8">تکمیل سفارش</h1>
+
+            <!-- پیام سبد خرید خالی -->
+            <div id="checkout-empty" class="hidden bg-white rounded-2xl border border-gray-100 p-12 text-center">
+                <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 1.879-4.913 2.184-7.673.021-.194.03-.294.028-.315-.001-.02-.01-.037-.024-.05a.081.081 0 00-.055-.02c-.026.001-.11.023-.278.066L7.5 8.25" />
+                </svg>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">سبد خرید شما خالی است</h3>
+                <p class="text-sm text-gray-400 mb-6">برای ادامه، ابتدا چند محصول به سبد خرید اضافه کنید</p>
+                <a href="index.html" class="inline-block bg-brand hover:bg-brand-dark text-white px-6 py-3 rounded-full text-sm font-medium transition-colors">بازگشت به فروشگاه</a>
+            </div>
+
+            <div id="checkout-form-section" class="hidden grid lg:grid-cols-5 gap-8 items-start">
+
+                <!-- فرم اطلاعات مشتری -->
+                <form id="checkout-form" onsubmit="submitOrder(event)" class="lg:col-span-3 bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 space-y-5">
+                    <h2 class="font-bold text-gray-900 text-lg mb-2">اطلاعات ارسال</h2>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">نام و نام‌خانوادگی</label>
+                        <input id="checkout-name" type="text" required placeholder="مثلاً محمد احمدی"
+                               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">شماره موبایل</label>
+                        <input id="checkout-phone" type="tel" required placeholder="09123456789" dir="ltr"
+                               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-right focus:outline-none focus:border-brand transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">آدرس کامل</label>
+                        <textarea id="checkout-address" required rows="3" placeholder="استان، شهر، خیابان، پلاک، واحد"
+                                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand transition-colors resize-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">روش پرداخت</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 border border-brand bg-brand-light/30 rounded-xl px-4 py-3 cursor-pointer">
+                                <input type="radio" name="payment" checked class="accent-brand">
+                                <span class="text-sm font-medium text-gray-800">پرداخت در محل (نقدی یا کارت‌خوان)</span>
+                            </label>
+                            <label class="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3 opacity-50 cursor-not-allowed">
+                                <input type="radio" name="payment" disabled>
+                                <span class="text-sm font-medium text-gray-500">پرداخت آنلاین (به‌زودی)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-3.5 rounded-xl transition-colors mt-2">
+                        ثبت نهایی سفارش
+                    </button>
+                </form>
+
+                <!-- خلاصه سفارش -->
+                <div class="lg:col-span-2 bg-white rounded-2xl border border-gray-100 p-6 sm:p-8">
+                    <h2 class="font-bold text-gray-900 text-lg mb-2">خلاصه سفارش</h2>
+                    <div id="checkout-summary" class="divide-y divide-gray-100"></div>
+                    <div class="border-t border-gray-100 mt-4 pt-4 flex items-center justify-between">
+                        <span class="text-sm text-gray-500">جمع کل</span>
+                        <span id="checkout-total" class="font-bold text-xl text-gray-900"></span>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-3">هزینه ارسال پس از هماهنگی با پشتیبانی مشخص می‌شود.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===================== نمای موفقیت‌آمیز بودن سفارش ===================== -->
+        <div id="checkout-success-view" class="hidden bg-white rounded-2xl border border-gray-100 p-10 sm:p-16 text-center max-w-xl mx-auto">
+            <div class="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">سفارش شما با موفقیت ثبت شد!</h2>
+            <p class="text-gray-500 mb-6">به‌زودی همکاران ما جهت هماهنگی ارسال با شما تماس می‌گیرند.</p>
+
+            <div class="bg-gray-50 rounded-xl p-5 mb-8 space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-500">کد پیگیری سفارش</span>
+                    <span id="checkout-order-code" class="font-bold text-gray-900" dir="ltr"></span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-500">مبلغ قابل پرداخت</span>
+                    <span id="checkout-order-total" class="font-bold text-gray-900"></span>
+                </div>
+            </div>
+
+            <a href="index.html" class="inline-block bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-full font-medium transition-colors">
+                بازگشت به فروشگاه
+            </a>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
