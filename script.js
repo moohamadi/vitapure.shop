@@ -39,6 +39,39 @@
             }, 200);
         }
 
+        // باز/بسته کردن مودال سبد خرید
+        function openCartModal() {
+            document.getElementById('cart-overlay').classList.remove('hidden');
+            const modal = document.getElementById('cart-modal');
+            modal.classList.remove('translate-x-[-100%]');
+            document.body.style.overflow = 'hidden';
+            renderCart();
+        }
+
+        function closeCartModal() {
+            document.getElementById('cart-overlay').classList.add('hidden');
+            document.getElementById('cart-modal').classList.add('translate-x-[-100%]');
+            document.body.style.overflow = '';
+        }
+
+        // نمایش محتوای سبد خرید (فعلاً همیشه خالی، بعداً به localStorage وصل می‌شود)
+        function renderCart() {
+            const cart = []; // TODO: از localStorage خوانده خواهد شد
+            const emptyState = document.getElementById('cart-empty-state');
+            const itemsList = document.getElementById('cart-items-list');
+            const footer = document.getElementById('cart-footer');
+
+            if (cart.length === 0) {
+                emptyState.classList.remove('hidden');
+                itemsList.classList.add('hidden');
+                footer.classList.add('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                itemsList.classList.remove('hidden');
+                footer.classList.remove('hidden');
+            }
+        }
+
         // Slider Drag Functionality
         const sliders = document.querySelectorAll('.slider-container');
         sliders.forEach(slider => {
