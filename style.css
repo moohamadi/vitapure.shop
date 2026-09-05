@@ -1,0 +1,74 @@
+        html { scroll-behavior: smooth; }
+        
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(255,255,255,0.3); 
+        }
+ .product-badge {
+    position: relative;
+    z-index: 20 !important;
+ }
+ .product-card .product-image {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+ .product-card:hover .product-image {
+    transform: scale(1.08);
+}
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        .btn-hover:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* Slider Styles */
+        .slider-container {
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+        }
+        .slider-container::-webkit-scrollbar {
+            display: none;
+        }
+        .slider-container:active {
+            cursor: grabbing;
+        }
+        .slider-item {
+            flex-shrink: 0;
+        }
+
+        /* انیمیشن دودل‌های تزئینی - فقط برای ۴ کارت پرفروش */
+        .bestseller-card {
+            overflow: visible !important;
+            position: relative;
+        }
+        .bestseller-card .doodle-container {
+            opacity: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .bestseller-card .doodle {
+            position: absolute;
+            opacity: 0;
+            width: 34px;
+            height: 34px;
+            will-change: transform, opacity;
+        }
+        .bestseller-card .doodle-leaf   { top: 12%;  right: 10%; }
+        .bestseller-card .doodle-drop   { bottom: 16%; left: 14%; }
+        .bestseller-card .doodle-star   { top: 20%;  left: 12%; }
+        .bestseller-card .doodle-circle { bottom: 20%; right: 14%; }
+        .bestseller-card .doodle-plus   { top: 45%;  right: 5%; }
+
+        @keyframes doodleFloat1 { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-8px) rotate(5deg); } }
+        @keyframes doodleFloat2 { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(-8deg); } }
+        @keyframes doodleFloat3 { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-6px) rotate(10deg); } }
+
+        .anim-doodle-1 { animation: doodleFloat1 3s ease-in-out infinite; }
+        .anim-doodle-2 { animation: doodleFloat2 3.5s ease-in-out infinite; }
+        .anim-doodle-3 { animation: doodleFloat3 4s ease-in-out infinite; }

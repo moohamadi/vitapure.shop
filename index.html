@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaPure | سلامت شما، اولویت ماست</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Custom Config -->
+        <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-4">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <a href="#" class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
+            VitaPure
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+            <a href="#" class="hover:text-brand transition-colors">خانه</a>
+            <a href="#products" class="hover:text-brand transition-colors">محصولات</a>
+            <a href="#categories" class="hover:text-brand transition-colors">دسته‌بندی‌ها</a>
+            <a href="#consultation" class="hover:text-brand transition-colors">مشاوره رایگان</a>
+            <a href="#about" class="hover:text-brand transition-colors">درباره ما</a>
+        </div>
+        <div class="flex items-center gap-5">
+            <button class="text-gray-600 hover:text-brand transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </button>
+            <button class="relative text-gray-600 hover:text-brand transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                </svg>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-brand text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center opacity-0">0</span>
+            </button>
+        </div>
+    </div>
+</nav>
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-light/50 to-white -z-10"></div>
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-right space-y-6">
+                <div class="inline-flex items-center gap-1 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">
+                    <div class="flex text-brand-accent text-xs">★★★★★</div>
+                    <span class="text-xs text-gray-500 font-medium">(۴.۸ از ۱,۰۰ نظر)</span>
+                </div>
+                <h1 class="text-4xl lg:text-6xl font-bold leading-tight text-gray-900">
+                  سلامت شما <br>
+                    <span class="text-brand">اولویت ماست</span>
+                </h1>
+                <p class="text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                    مکمل‌های گیاهی و لوازم بهداشتی <br>
+                    با فرمولاسیون علمی برای حمایت از انرژی و حیاط کلی بدن.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                    <a href="#products" class="btn-hover bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-full font-medium shadow-lg shadow-brand/30">
+                        مشاهده محصولات
+                    </a>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="absolute inset-0 bg-brand-light rounded-full blur-3xl opacity-40 -z-10 scale-75"></div>
+                <img src="https://image.qwenlm.ai/public_source/87bd68cd-98cf-4d97-a0a6-c03410b2767f/1cd94d5b3-1ecc-4a0a-a8fd-130508d1851b.png" alt="Product" class="w-full max-w-md object-contain drop-shadow-2xl">
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust Bar -->
+    <section class="py-10 border-y border-gray-100 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="group cursor-pointer">
+                <div class="w-12 h-12 mx-auto mb-3 bg-brand-light rounded-full flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 text-sm">تاییدیه وزارت بهداشت</h3>
+            </div>
+            <div class="group cursor-pointer">
+                <div class="w-12 h-12 mx-auto mb-3 bg-brand-light rounded-full flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 text-sm">ارسال سریع و رایگان</h3>
+            </div>
+            <div class="group cursor-pointer">
+                <div class="w-12 h-12 mx-auto mb-3 bg-brand-light rounded-full flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 text-sm">۱۰۰٪ طبیعی و ارگانیک</h3>
+            </div>
+            <div class="group cursor-pointer">
+                <div class="w-12 h-12 mx-auto mb-3 bg-brand-light rounded-full flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 text-sm">مشاوره تخصصی رایگان</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers Section -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-2 h-2 bg-brand rounded-full"></span>
+                    <span class="text-sm font-bold text-brand tracking-widest">BEST SELLERS</span>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">پرفروش‌ترین‌ها</h2>
+                <p class="text-gray-500">انتخاب هوشمندانه مشتریان ما برای سلامتی روزانه</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Card 1: Probiotic -->
+                <div class="product-card bestseller-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                    <div class="aspect-square bg-gradient-to-br from-brand-light/30 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                        <div class="doodle-container absolute inset-0">
+                            <svg class="doodle doodle-leaf" viewBox="0 0 60 60" fill="none"><path d="M30 10C30 10 15 20 15 35C15 43.284 21.716 50 30 50C38.284 50 45 43.284 45 35C45 20 30 10 30 10Z" stroke="#7CB9A8" stroke-width="2"/><path d="M30 10V50" stroke="#7CB9A8" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-drop" viewBox="0 0 40 60" fill="none"><path d="M20 5C20 5 5 25 5 37.5C5 45.784 11.716 52.5 20 52.5C28.284 52.5 35 45.784 35 37.5C35 25 20 5 20 5Z" stroke="#7CB9A8" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-star" viewBox="0 0 40 40" fill="none"><path d="M20 5L24.5 15.5L36 17L27.5 25L29.5 36.5L20 31L10.5 36.5L12.5 25L4 17L15.5 15.5L20 5Z" stroke="#D4AF37" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-circle" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="15" stroke="#7CB9A8" stroke-width="2" stroke-dasharray="4 4"/></svg>
+                            <svg class="doodle doodle-plus" viewBox="0 0 30 30" fill="none"><path d="M15 5V25M5 15H25" stroke="#7CB9A8" stroke-width="2"/></svg>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-brand text-white px-3 py-1 rounded-full text-xs font-bold product-badge ">پروبیوتیک</span>
+                        <img src="images/OIG3.jpg" alt="Probiotic" class="product-image w-full h-full object-contain">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-900 mb-1">کمپلکس پروبیوتیک</h3>
+                        <p class="text-sm text-gray-500 mb-4">چای گیاهی سم‌زدا</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۲,۵۷۹)</span></div>
+                                <span class="font-bold text-lg text-gray-900">۲۲,۰۰ تومان</span>
+                            </div>
+                            <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-brand text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2">
+                                <span>خرید</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Serum -->
+                <div class="product-card bestseller-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                    <div class="aspect-square bg-gradient-to-br from-blue-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                        <div class="doodle-container absolute inset-0">
+                            <svg class="doodle doodle-leaf" viewBox="0 0 60 60" fill="none"><path d="M30 10C30 10 15 20 15 35C15 43.284 21.716 50 30 50C38.284 50 45 43.284 45 35C45 20 30 10 30 10Z" stroke="#7CB9A8" stroke-width="2"/><path d="M30 10V50" stroke="#7CB9A8" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-drop" viewBox="0 0 40 60" fill="none"><path d="M20 5C20 5 5 25 5 37.5C5 45.784 11.716 52.5 20 52.5C28.284 52.5 35 45.784 35 37.5C35 25 20 5 20 5Z" stroke="#7CB9A8" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-star" viewBox="0 0 40 40" fill="none"><path d="M20 5L24.5 15.5L36 17L27.5 25L29.5 36.5L20 31L10.5 36.5L12.5 25L4 17L15.5 15.5L20 5Z" stroke="#D4AF37" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-circle" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="15" stroke="#7CB9A8" stroke-width="2" stroke-dasharray="4 4"/></svg>
+                            <svg class="doodle doodle-plus" viewBox="0 0 30 30" fill="none"><path d="M15 5V25M5 15H25" stroke="#7CB9A8" stroke-width="2"/></svg>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-brand text-white px-3 py-1 rounded-full text-xs font-bold product-badge">مراقبت پوست</span>
+                        <img src="images/o.png" alt="Serum" class="product-image w-full h-full object-contain">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-900 mb-1">سرم آبرسان هیالورون</h3>
+                        <p class="text-sm text-gray-500 mb-4">بالم ترمیم کننده</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۲۴)</span></div>
+                                <span class="font-bold text-lg text-gray-900">۸۷,۵۰۰ تومان</span>
+                            </div>
+                            <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-brand text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2">
+                                <span>خرید</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Omega-3 -->
+                <div class="product-card bestseller-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                    <div class="aspect-square bg-gradient-to-br from-amber-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                        <div class="doodle-container absolute inset-0">
+                            <svg class="doodle doodle-leaf" viewBox="0 0 60 60" fill="none"><path d="M30 10C30 10 15 20 15 35C15 43.284 21.716 50 30 50C38.284 50 45 43.284 45 35C45 20 30 10 30 10Z" stroke="#7CB9A8" stroke-width="2"/><path d="M30 10V50" stroke="#7CB9A8" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-drop" viewBox="0 0 40 60" fill="none"><path d="M20 5C20 5 5 25 5 37.5C5 45.784 11.716 52.5 20 52.5C28.284 52.5 35 45.784 35 37.5C35 25 20 5 20 5Z" stroke="#7CB9A8" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-star" viewBox="0 0 40 40" fill="none"><path d="M20 5L24.5 15.5L36 17L27.5 25L29.5 36.5L20 31L10.5 36.5L12.5 25L4 17L15.5 15.5L20 5Z" stroke="#D4AF37" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-circle" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="15" stroke="#7CB9A8" stroke-width="2" stroke-dasharray="4 4"/></svg>
+                            <svg class="doodle doodle-plus" viewBox="0 0 30 30" fill="none"><path d="M15 5V25M5 15H25" stroke="#7CB9A8" stroke-width="2"/></svg>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-brand text-white px-3 py-1 rounded-full text-xs font-bold product-badge">مکمل</span>
+                        <img src="images/Karen-Golden-Seas-Omeg.jpg" alt="Omega3" class="product-image w-full h-full object-contain">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-900 mb-1">امگا ۳ گلد</h3>
+                        <p class="text-sm text-gray-500 mb-4">آرامش بخش و ضد التهاب</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۳,۹۲)</span></div>
+                                <span class="font-bold text-lg text-gray-900">۳۶۸,۰۰ تومان</span>
+                            </div>
+                            <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-brand text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2">
+                                <span>خرید</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Multi -->
+                <div class="product-card bestseller-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                    <div class="aspect-square bg-gradient-to-br from-purple-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                        <div class="doodle-container absolute inset-0">
+                            <svg class="doodle doodle-leaf" viewBox="0 0 60 60" fill="none"><path d="M30 10C30 10 15 20 15 35C15 43.284 21.716 50 30 50C38.284 50 45 43.284 45 35C45 20 30 10 30 10Z" stroke="#7CB9A8" stroke-width="2"/><path d="M30 10V50" stroke="#7CB9A8" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-drop" viewBox="0 0 40 60" fill="none"><path d="M20 5C20 5 5 25 5 37.5C5 45.784 11.716 52.5 20 52.5C28.284 52.5 35 45.784 35 37.5C35 25 20 5 20 5Z" stroke="#7CB9A8" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-star" viewBox="0 0 40 40" fill="none"><path d="M20 5L24.5 15.5L36 17L27.5 25L29.5 36.5L20 31L10.5 36.5L12.5 25L4 17L15.5 15.5L20 5Z" stroke="#D4AF37" stroke-width="2"/></svg>
+                            <svg class="doodle doodle-circle" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="15" stroke="#7CB9A8" stroke-width="2" stroke-dasharray="4 4"/></svg>
+                            <svg class="doodle doodle-plus" viewBox="0 0 30 30" fill="none"><path d="M15 5V25M5 15H25" stroke="#7CB9A8" stroke-width="2"/></svg>
+                        </div>
+                        <span class="absolute top-4 right-4 bg-brand text-white px-3 py-1 rounded-full text-xs font-bold">ویتامین</span>
+                        <img src="images/OIG2.jpeg" alt="Multi" class="product-image w-full h-full object-contain">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-gray-900 mb-1">مولتی ویتامین دیلی</h3>
+                        <p class="text-sm text-gray-500 mb-4">انرژی زا و تقویت ایمنی</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۲۰)</span></div>
+                                <span class="font-bold text-lg text-gray-900">۱۴۵,۰۰۰ تومان</span>
+                            </div>
+                            <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-brand text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2">
+                                <span>خرید</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش ۱: آرایشی بهداشتی -->
+      <section id="categories" class="py-20 bg-white"></section>
+    <section class="py-20 bg-gradient-to-b from-pink-50/50 to-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-2 h-2 bg-pink-400 rounded-full"></span>
+                    <span class="text-sm font-bold text-pink-600 tracking-widest">BEAUTY & CARE</span>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">آرایشی بهداشتی</h2>
+                <p class="text-gray-500">محصولات مراقبت از پوست و مو با کیفیت برتر</p>
+            </div>
+            <div class="relative">
+                <button class="slider-prev absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-pink-50 transition-colors" data-slider="beauty">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+                <button class="slider-next absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-pink-50 transition-colors" data-slider="beauty">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="slider-container flex gap-6 pb-4 px-2" id="slider-beauty">
+                    <!-- سرم ویتامین C -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-pink-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-pink-400 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">سرم</span>
+                                <img src="images/serum.vitaminc.jpg" alt="Vitamin C" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">سرم ویتامین C</h3>
+                                <p class="text-sm text-gray-500 mb-4">روشن‌کننده و ضد لک</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۴۵)</span></div><span class="font-bold text-lg text-gray-900">۲۸۵,۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-pink-400 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- کرم مرطوب‌کننده -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-pink-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-pink-400 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">کرم</span>
+                                <img src="images/Hyaluronic-cream-.png" alt="Moisturizer" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">کرم مرطوب‌کننده هیالورون</h3>
+                                <p class="text-sm text-gray-500 mb-4">آبرسانی عمیق ۲۴ ساعته</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۸۹۲)</span></div><span class="font-bold text-lg text-gray-900">۱۹۵,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-pink-400 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- شامپو -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-pink-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-pink-400 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">شامپو</span>
+                                <img src="images/alpecin-packshot-double-effect-caffeine-shampoo-uae-ar.png" alt="Shampoo" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">شامپو تقویتی کافئین</h3>
+                                <p class="text-sm text-gray-500 mb-4">ضد ریزش و تقویت‌کننده</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۲,۱۵)</span></div><span class="font-bold text-lg text-gray-900">۱۴۵,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-pink-400 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ماسک صورت -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-pink-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-pink-400 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">ماسک</span>
+                                <img src="images/FACIAL-MASK-charcoal-1_97d.jpg" alt="Face Mask" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">ماسک صورت زغال فعال</h3>
+                                <p class="text-sm text-gray-500 mb-4">پاک‌کننده منافذ عمیق</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۶۷۸)</span></div><span class="font-bold text-lg text-gray-900">۸۹,۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-pink-400 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ضد آفتاب -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-pink-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-pink-400 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">ضد آفتاب</span>
+                                <img src="images/istockphoto-1408905325-612x612.webp" alt="Sunscreen" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">ضد آفتاب SPF50</h3>
+                                <p class="text-sm text-gray-500 mb-4">محافظت کامل در برابر UV</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۵۳۴)</span></div><span class="font-bold text-lg text-gray-900">۲۵,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-pink-400 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- تونر -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-pink-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-pink-400 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">تونر</span>
+                                <img src="images/71Vs4f6qhnL._AC_UF1000,1000_QL80_.jpg" alt="Toner" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">تونر پاک‌کننده</h3>
+                                <p class="text-sm text-gray-500 mb-4">تنظیم‌کننده pH پوست</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۹۴۵)</span></div><span class="font-bold text-lg text-gray-900">۶۵,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-pink-400 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بخش مکمل‌های بدنسازی -->
+    <section class="py-20 bg-gradient-to-b from-red-50/50 to-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+                    <span class="text-sm font-bold text-red-600 tracking-widest">SPORTS NUTRITION</span>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">مکمل‌های بدنسازی</h2>
+                <p class="text-gray-500">تقویت عملکرد ورزشی و عضله‌سازی حرفه‌ای</p>
+            </div>
+            <div class="relative">
+                <button class="slider-prev absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-red-50 transition-colors" data-slider="sports">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+                <button class="slider-next absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-red-50 transition-colors" data-slider="sports">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="slider-container flex gap-6 pb-4 px-2" id="slider-sports">
+                    <!-- پروتئین وی -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-red-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">پروتئین</span>
+                                <img src="https://placehold.co/400x400/fef2f2/dc2626?text=Whey+Protein" alt="Whey Protein" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">پروتئین وی ایزوله</h3>
+                                <p class="text-sm text-gray-500 mb-4">۲۵ گرم پروتئین خالص</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۳,۴۵۶)</span></div><span class="font-bold text-lg text-gray-900">۱,۲۵۰,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-red-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- کراتین -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-red-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">کراتین</span>
+                                <img src="https://placehold.co/400x400/fef2f2/dc2626?text=Creatine" alt="Creatine" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">کراتین مونوهیدرات</h3>
+                                <p class="text-sm text-gray-500 mb-4">افزایش قدرت و استقامت</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۲,۷۹)</span></div><span class="font-bold text-lg text-gray-900">۶۸۰,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-red-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- BCAA -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-red-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">BCAA</span>
+                                <img src="https://placehold.co/400x400/fef2f2/dc2626?text=BCAA" alt="BCAA" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">BCAA آمینو اسید</h3>
+                                <p class="text-sm text-gray-500 mb-4">ریکاوری سریع عضلات</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۵۷)</span></div><span class="font-bold text-lg text-gray-900">۵۴۰,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-red-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- گینر -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-red-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">گینر</span>
+                                <img src="https://placehold.co/400x400/fef2f2/dc2626?text=Gainer" alt="Gainer" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">گینر افزایش وزن</h3>
+                                <p class="text-sm text-gray-500 mb-4">کالری بالا برای حجم</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۳۴)</span></div><span class="font-bold text-lg text-gray-900">۹۵۰,۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-red-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- گلوتامین -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-red-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">گلوتامین</span>
+                                <img src="https://placehold.co/400x400/fef2f2/dc2626?text=Glutamine" alt="Glutamine" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">گلوتامین خالص</h3>
+                                <p class="text-sm text-gray-500 mb-4">تقویت سیستم ایمنی</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۸۹۰)</span></div><span class="font-bold text-lg text-gray-900">۴۲۰,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-red-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- پمپ قبل تمرین -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-red-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">پمپ</span>
+                                <img src="https://placehold.co/400x400/fef2f2/dc2626?text=Pre-Workout" alt="Pre-Workout" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">پمپ قبل تمرین</h3>
+                                <p class="text-sm text-gray-500 mb-4">انرژی و تمرکز بالا</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۶۷۸)</span></div><span class="font-bold text-lg text-gray-900">۸۰,۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-red-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بخش ویتامین‌ها و شربت‌ها -->
+    <section class="py-20 bg-gradient-to-b from-amber-50/50 to-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                    <span class="text-sm font-bold text-amber-600 tracking-widest">VITAMINS & SYRUPS</span>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">ویتامین‌ها و شربت‌ها</h2>
+                <p class="text-gray-500">تقویت سیستم ایمنی و سلامت عمومی بدن</p>
+            </div>
+            <div class="relative">
+                <button class="slider-prev absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-amber-50 transition-colors" data-slider="vitamins">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+                <button class="slider-next absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-amber-50 transition-colors" data-slider="vitamins">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="slider-container flex gap-6 pb-4 px-2" id="slider-vitamins">
+                    <!-- مولتی ویتامین -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-amber-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">مولتی</span>
+                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop" alt="Multi Vitamin" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">مولتی ویتامین روزانه</h3>
+                                <p class="text-sm text-gray-500 mb-4">۲۳ ویتامین و ماده معدنی</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۲,۵۶۷)</span></div><span class="font-bold text-lg text-gray-900">۱۴۵,۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-amber-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ویتامین D3 -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-amber-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">ویتامین D</span>
+                                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=400&fit=crop" alt="Vitamin D3" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">ویتامین D3 1000</h3>
+                                <p class="text-sm text-gray-500 mb-4">تقویت استخوان و ایمنی</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۳,۲۳)</span></div><span class="font-bold text-lg text-gray-900">۹۵,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-amber-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- شربت آهن -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-amber-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">شربت آهن</span>
+                                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop" alt="Iron Syrup" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">شربت آهن کودکان</h3>
+                                <p class="text-sm text-gray-500 mb-4">ضد کم‌خونی و تقویتی</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۲,۱۵۶)</span></div><span class="font-bold text-lg text-gray-900">۷۸,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-amber-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- امگا ۳ -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-amber-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">امگا </span>
+                                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=400&fit=crop" alt="Omega 3" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">امگا ۳ گلد</h3>
+                                <p class="text-sm text-gray-500 mb-4">سلامت قلب و مغز</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۳,۸۹)</span></div><span class="font-bold text-lg text-gray-900">۳۶۸,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-amber-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- زینک پلاس -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-amber-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">زینک</span>
+                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop" alt="Zinc Plus" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">زینک پلاس</h3>
+                                <p class="text-sm text-gray-500 mb-4">تقویت مو و ناخن</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۲۶۷)</span></div><span class="font-bold text-lg text-gray-900">۱۲۵,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-amber-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- شربت کلسیم -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-amber-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">کلسیم</span>
+                                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop" alt="Calcium Syrup" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">شربت کلسیم</h3>
+                                <p class="text-sm text-gray-500 mb-4">استحکام استخوان‌ها</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(,۴۵۶)</span></div><span class="font-bold text-lg text-gray-900">۱۱۵,۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-amber-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بخش مادر و فرزند -->
+    <section class="py-20 bg-gradient-to-b from-blue-50/50 to-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span class="text-sm font-bold text-blue-600 tracking-widest">MOTHER & BABY</span>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">مادر و فرزند</h2>
+                <p class="text-gray-500">محصولات تخصصی برای سلامت مادر و کودک</p>
+            </div>
+            <div class="relative">
+                <button class="slider-prev absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-blue-50 transition-colors" data-slider="baby">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+                <button class="slider-next absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-3 hover:bg-blue-50 transition-colors" data-slider="baby">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="slider-container flex gap-6 pb-4 px-2" id="slider-baby">
+                    <!-- شربت مولتی ویتامین کودک -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-blue-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">کودک</span>
+                                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop" alt="Kids Vitamin" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">شربت مولتی ویتامین کودک</h3>
+                                <p class="text-sm text-gray-500 mb-4">طعم پرتقالی خوشمزه</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۲,۴۵)</span></div><span class="font-bold text-lg text-gray-900">۸۵,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- قطره ویتامین AD -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-blue-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">قطره</span>
+                                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=400&fit=crop" alt="Vitamin AD" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">قطره ویتامین AD</h3>
+                                <p class="text-sm text-gray-500 mb-4">برای نوزادان و کودکان</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۹۰۰)</span></div><span class="font-bold text-lg text-gray-900">۴۵,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- شیر خشک -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-blue-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">شیر خشک</span>
+                                <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop" alt="Baby Formula" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">پودر شیر خشک</h3>
+                                <p class="text-sm text-gray-500 mb-4">غنی شده با آهن و DHA</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۳,۴۵۶)</span></div><span class="font-bold text-lg text-gray-900">۳۲۰,۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- کرم سوختگی -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-blue-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">کرم</span>
+                                <img src="https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=400&h=400&fit=crop" alt="Diaper Cream" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">کرم سوختگی پوشک</h3>
+                                <p class="text-sm text-gray-500 mb-4">محافظت و ترمیم پوست</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۲۳۴)</span></div><span class="font-bold text-lg text-gray-900">۶۵,۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- شامپو بچه -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-blue-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">شامپو</span>
+                                <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=400&h=400&fit=crop" alt="Baby Shampoo" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">شامپو ملایم بچه</h3>
+                                <p class="text-sm text-gray-500 mb-4">بدون اشک و حساسیت</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۲,۵۶۷)</span></div><span class="font-bold text-lg text-gray-900">۵۵,۰۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- پستانک -->
+                    <div class="slider-item w-full sm:w-1/2 lg:w-1/4">
+                        <div class="product-card bg-white rounded-3xl border border-gray-100 overflow-hidden cursor-pointer">
+                            <div class="aspect-square bg-gradient-to-br from-blue-50 to-white relative overflow-hidden p-8 flex items-center justify-center">
+                                <span class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold product-badge">پستانک</span>
+                                <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop" alt="Pacifier" class="product-image w-full h-full object-contain">
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-gray-900 mb-1">پستانک ارگونومیک</h3>
+                                <p class="text-sm text-gray-500 mb-4">طراحی آناتومیک</p>
+                                <div class="flex items-center justify-between">
+                                    <div><div class="flex items-center gap-1 text-brand-accent text-xs mb-1">★★★★★ <span class="text-gray-400">(۱,۷۸۹)</span></div><span class="font-bold text-lg text-gray-900">۹۵,۰۰ تومان</span></div>
+                                    <button onclick="addToCart()" class="btn-hover bg-gray-900 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2"><span>خرید</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- بخش مشاوره دارویی -->
+<section id="consultation" class="py-20 bg-brand-light/30">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">مشاوره رایگان تخصصی</h2>
+        <p class="text-gray-600 mb-10 max-w-xl mx-auto">
+            سوال یا مشکل خود را در زمینه مکمل‌ها و لوازم بهداشتی بنویسید. کارشناسان ما در کمتر از ۲۴ ساعت پاسخ خواهند داد.
+        </p>
+        
+        <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
+            <div class="space-y-6 text-right">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-3">
+                        سوال یا درخواست مشاوره شما:
+                    </label>
+                    <textarea 
+                        id="consultation-text" 
+                        rows="6" 
+                        class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all resize-none text-gray-700 placeholder-gray-400"
+                        placeholder="مثال: برای تقویت سیستم ایمنی و افزایش انرژی چه مکمل‌هایی پیشنهاد می‌کنید؟ یا: بهترین روتین پوستی برای پوست چرب چیست؟"
+                    ></textarea>
+                    <p class="text-xs text-gray-500 mt-2">حداقل ۲۰ کاراکتر وارد کنید</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input 
+                        type="text" 
+                        placeholder="نام و نام خانوادگی" 
+                        class="px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all"
+                    >
+                    <input 
+                        type="tel" 
+                        placeholder="شماره تماس" 
+                        class="px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all"
+                    >
+                </div>
+                
+                <input 
+                    type="email" 
+                    placeholder="ایمیل (اختیاری)" 
+                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all"
+                >
+                
+                <button 
+                    onclick="submitConsultation()" 
+                    class="w-full bg-gray-900 hover:bg-brand text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
+                    ارسال درخواست مشاوره
+                </button>
+                
+                <p class="text-xs text-gray-500">
+                    🔒 اطلاعات شما نزد ما محفوظ است و فقط برای ارسال پاسخ استفاده می‌شود.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Footer -->
+    <footer class="bg-gray-50 pt-20 pb-10 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <a href="#" class="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-6">
+                        <svg class="w-8 h-8 text-brand" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                        VitaPure
+                    </a>
+                    <p class="text-gray-500 text-sm leading-relaxed">ارائه دهنده مکمل‌های گیاهی و لوازم بهداشتی با بالاترین استانداردهای کیفی.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-6">دسترسی سریع</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand transition-colors">فروشگاه</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">درباره ما</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">تماس با پشتیبانی</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-6">قوانین</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand transition-colors">شرایط بازگشت کالا</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">حریم خصوصی</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-6">خبرنامه</h4>
+                    <form class="flex gap-2">
+                        <input type="email" placeholder="ایمیل شما..." class="flex-1 bg-white border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand">
+                        <button type="submit" class="bg-brand hover:bg-brand-dark text-white px-4 py-2 rounded-lg text-sm font-medium">عضویت</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 pt-8 text-center">
+                <p class="text-xs text-gray-400">© ۱۴۰۵ VitaPure. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
