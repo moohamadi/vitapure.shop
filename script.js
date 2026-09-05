@@ -25,18 +25,106 @@
             }
         });
 
-        // Cart Logic
-        let cartCount = 0;
+        // ==================== منطق سبد خرید (localStorage) ====================
+        const CART_KEY = 'vitapure_cart';
         const cartBadge = document.getElementById('cart-count');
-        
-        function addToCart() {
-            cartCount++;
-            cartBadge.innerText = cartCount;
-            cartBadge.classList.remove('opacity-0');
+
+        // تبدیل اعداد فارسی به انگلیسی
+        function toEnglishDigits(str) {
+            const persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+            return str.replace(/[۰-۹]/g, d => persian.indexOf(d));
+        }
+
+        // استخراج عدد قیمت از متنی مثل «۸۷,۵۰۰ تومان»
+        function parsePrice(text) {
+            const englishText = toEnglishDigits(text);
+            const digitsOnly = englishText.replace(/[^\d]/g, '');
+            return parseInt(digitsOnly, 10) || 0;
+        }
+
+        // نمایش عدد به‌صورت فارسی با جداکننده هزارگان
+        function formatPriceFa(num) {
+            const withCommas = num.toLocaleString('en-US');
+            return toPersianDigits(withCommas);
+        }
+
+        function toPersianDigits(str) {
+            const persian = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+            return String(str).replace(/[0-9]/g, d => persian[d]);
+        }
+
+        function getCart() {
+            try {
+                return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            updateCartBadge();
+        }
+
+        function updateCartBadge() {
+            const cart = getCart();
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartBadge.innerText = totalQty;
+            if (totalQty > 0) {
+                cartBadge.classList.remove('opacity-0');
+            } else {
+                cartBadge.classList.add('opacity-0');
+            }
+        }
+
+        // افزودن محصول به سبد خرید (فراخوانی از دکمه «خرید» روی هر کارت)
+        function addToCart(btn) {
+            const card = btn.closest('.product-card');
+            if (!card) return;
+
+            const name = card.querySelector('h3').innerText.trim();
+            const priceText = card.querySelector('.p-5 .font-bold.text-lg').innerText.trim();
+            const price = parsePrice(priceText);
+            const image = card.querySelector('.product-image').getAttribute('src');
+
+            let cart = getCart();
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ name, price, image, qty: 1 });
+            }
+            saveCart(cart);
+
+            // افکت کوچک روی نشان سبد خرید
             cartBadge.style.transform = 'scale(1.3)';
-            setTimeout(() => {
-                cartBadge.style.transform = 'scale(1)';
-            }, 200);
+            setTimeout(() => { cartBadge.style.transform = 'scale(1)'; }, 200);
+
+            // بازخورد کوتاه روی خود دکمه
+            const span = btn.querySelector('span');
+            if (span) {
+                const original = span.innerText;
+                span.innerText = '✓ افزوده شد';
+                setTimeout(() => { span.innerText = original; }, 1200);
+            }
+        }
+
+        function changeQty(name, delta) {
+            let cart = getCart();
+            const item = cart.find(i => i.name === name);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.name !== name);
+            }
+            saveCart(cart);
+            renderCart();
+        }
+
+        function removeFromCart(name) {
+            let cart = getCart().filter(i => i.name !== name);
+            saveCart(cart);
+            renderCart();
         }
 
         // باز/بسته کردن مودال سبد خرید
@@ -54,9 +142,30 @@
             document.body.style.overflow = '';
         }
 
-        // نمایش محتوای سبد خرید (فعلاً همیشه خالی، بعداً به localStorage وصل می‌شود)
+        // ساخت HTML یک ردیف محصول در مودال سبد خرید
+        function cartItemTemplate(item) {
+            const safeName = item.name.replace(/'/g, "\\'");
+            return `
+                <div class="flex items-center gap-4 py-4">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain bg-gray-50 rounded-xl flex-shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-bold text-gray-900 truncate">${item.name}</h4>
+                        <p class="text-xs text-gray-400 mt-1">${formatPriceFa(item.price)} تومان</p>
+                        <div class="flex items-center gap-3 mt-2">
+                            <button onclick="changeQty('${safeName}', -1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-100">−</button>
+                            <span class="text-sm font-medium w-4 text-center">${toPersianDigits(item.qty)}</span>
+                            <button onclick="changeQty('${safeName}', 1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-100">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart('${safeName}')" class="text-gray-300 hover:text-red-500 transition-colors flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>`;
+        }
+
+        // نمایش محتوای سبد خرید
         function renderCart() {
-            const cart = []; // TODO: از localStorage خوانده خواهد شد
+            const cart = getCart();
             const emptyState = document.getElementById('cart-empty-state');
             const itemsList = document.getElementById('cart-items-list');
             const footer = document.getElementById('cart-footer');
@@ -65,12 +174,23 @@
                 emptyState.classList.remove('hidden');
                 itemsList.classList.add('hidden');
                 footer.classList.add('hidden');
-            } else {
-                emptyState.classList.add('hidden');
-                itemsList.classList.remove('hidden');
-                footer.classList.remove('hidden');
+                return;
             }
+
+            emptyState.classList.add('hidden');
+            itemsList.classList.remove('hidden');
+            footer.classList.remove('hidden');
+
+            itemsList.innerHTML = cart.map(cartItemTemplate).join('');
+
+            const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+            document.getElementById('cart-total').innerText = formatPriceFa(total) + ' تومان';
         }
+        // ==================== پایان منطق سبد خرید ====================
+
+        // نمایش تعداد سبد خرید هنگام بارگذاری اولیه صفحه (اگر قبلاً چیزی ذخیره شده)
+        document.addEventListener('DOMContentLoaded', updateCartBadge);
+
 
         // Slider Drag Functionality
         const sliders = document.querySelectorAll('.slider-container');
