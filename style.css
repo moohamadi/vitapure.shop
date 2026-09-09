@@ -31,7 +31,15 @@
             scrollbar-width: none;
             -ms-overflow-style: none;
             cursor: grab;
+            gap: 1.5rem; /* 24px on desktop */
         }
+
+        @media (max-width: 640px) {
+            .slider-container {
+                gap: 0.75rem; /* 12px on mobile */
+            }
+        }
+
         .slider-container::-webkit-scrollbar {
             display: none;
         }
