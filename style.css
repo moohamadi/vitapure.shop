@@ -80,3 +80,10 @@
         .anim-doodle-1 { animation: doodleFloat1 3s ease-in-out infinite; }
         .anim-doodle-2 { animation: doodleFloat2 3.5s ease-in-out infinite; }
         .anim-doodle-3 { animation: doodleFloat3 4s ease-in-out infinite; }
+
+        /* Best Sellers Grid */
+        .best-sellers-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
