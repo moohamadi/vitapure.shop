@@ -3,6 +3,116 @@
    فایل CSS مخصوص استایل‌های ریسپانسیو موبایل
    ===================================================== */
 
+/* ==================== اسلایدرهای افقی ==================== */
+@media (max-width: 1024px) {
+    /* تبلت: 3 محصول در ردیف */
+    .slider-item {
+        width: 33.333%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* تبلت کوچک: 2.5 محصول (scroll بشود) */
+    .slider-item {
+        width: 42%;
+    }
+}
+
+@media (max-width: 640px) {
+    /* موبایل: هر آیتم کمی بیشتر از نصف عرض، با اسکرول-اسنپ افقی */
+    .slider-container {
+        display: flex;
+        gap: 0.75rem;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .slider-item {
+        width: 52%;
+        scroll-snap-align: start;
+    }
+
+    /* دکمه‌های قبلی/بعدی روی موبایل حذف می‌شوند چون روی کارت‌ها می‌افتادند؛
+       اسکرول لمسی (swipe) جایگزین آن‌هاست */
+    .slider-prev,
+    .slider-next {
+        display: none !important;
+    }
+}
+
+/* ==================== کارت محصول (عمومی، همه اسلایدرها و پرفروش‌ترین‌ها) ==================== */
+@media (max-width: 640px) {
+    .product-card {
+        border-radius: 1.25rem;
+    }
+
+    .product-card .aspect-square {
+        padding: 1.1rem;
+    }
+
+    .product-card .product-badge {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.6rem;
+        top: 0.6rem !important;
+        right: 0.6rem !important;
+    }
+
+    .product-card .p-5 {
+        padding: 0.85rem 1rem 1rem;
+    }
+
+    /* تیتر محصول */
+    .product-card h3 {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        margin-bottom: 0.15rem;
+        white-space: normal;
+    }
+
+    /* توضیح محصول */
+    .product-card .p-5 > p {
+        font-size: 0.72rem;
+        margin-bottom: 0.65rem;
+    }
+
+    /* ردیف امتیاز/قیمت/دکمه خرید: به‌صورت عمودی و بدون هم‌پوشانی */
+    .product-card .p-5 > div.flex.items-center.justify-between,
+    .product-card .p-5 > div:last-child {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.6rem;
+    }
+
+    .product-card .p-5 > div.flex.items-center.justify-between > div:first-child {
+        width: 100%;
+    }
+
+    .product-card .p-5 > div.flex.items-center.justify-between > div:first-child > span:last-child {
+        font-size: 0.95rem;
+    }
+
+    /* دکمه خرید: عرض کامل و متن قابل مشاهده */
+    .product-card .p-5 button {
+        width: 100% !important;
+        padding: 0.6rem 0.75rem !important;
+        font-size: 0.8rem !important;
+        justify-content: center !important;
+        gap: 0.35rem !important;
+    }
+
+    .product-card .p-5 button span {
+        display: inline !important;
+    }
+
+    .product-card .p-5 button svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
 /* ==================== بخش پرفروش‌ترین‌ها ==================== */
 @media (max-width: 1024px) {
     /* دسکتاپ بزرگ: 4 ستون */
@@ -15,7 +125,7 @@
     /* تبلت: 2 ستون */
     .best-sellers-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem; /* فاصله کمتر */
+        gap: 1rem;
     }
 }
 
@@ -24,178 +134,6 @@
     .best-sellers-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.75rem;
-    }
-
-    /* کارت محصول - متناسب موبایل */
-    .product-card {
-        border-radius: 1.25rem; /* کمتر از desktop */
-    }
-
-    .product-card .aspect-square {
-        padding: 1rem; /* پدینگ کمتر داخل تصویر */
-    }
-
-    .product-card .p-5 {
-        padding: 0.75rem;
-    }
-
-    /* تیتر محصول - کوچکتر */
-    .product-card h3 {
-        font-size: 0.875rem;
-        line-height: 1.2;
-    }
-
-    /* توضیح محصول */
-    .product-card > div > p {
-        font-size: 0.75rem;
-    }
-
-    /* قیمت و دکمه خرید - عمودی */
-    .product-card .p-5 > div:last-child {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 0.5rem;
-    }
-
-    /* دکمه خرید - عرض کامل */
-    .product-card button {
-        width: 100% !important;
-        padding: 0.5rem 0.75rem !important;
-        font-size: 0.75rem !important;
-        justify-content: center;
-    }
-
-    .product-card button svg {
-        width: 14px;
-        height: 14px;
-    }
-
-    .product-card button span {
-        display: none; /* مخفی کردن متن "خرید" */
-    }
-
-    /* اسلایدرهای افقی - موبایل */
-    .slider-item {
-        width: 50%;
-    }
-
-    .slider-container {
-        gap: 0.75rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-
-    /* دکمه‌های next/prev - موبایل */
-    .slider-prev,
-    .slider-next {
-        width: 2.25rem;
-        height: 2.25rem;
-        padding: 0.5rem;
-    }
-
-    .slider-prev svg,
-    .slider-next svg {
-        width: 1rem;
-        height: 1rem;
-    }
-}
-
-/* ==================== اسلایدرهای افقی ==================== */
-@media (max-width: 1024px) {
-    /* تبلت: 3 محصول در ردیف */
-    .slider-item {
-        width: 33.333%;
-    }
-}
-
-@media (max-width: 768px) {
-    /* تبلت کوچک: 2.5 محصول (scroll بشود) */
-    .slider-item {
-        width: 40%;
-    }
-}
-
-@media (max-width: 640px) {
-    /* موبایل: 2 محصول در ردیف + scroll */
-    .slider-item {
-        width: 50%;
-    }
-
-    .slider-container {
-        gap: 0.75rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-
-    /* دکمه‌های next/prev - موبایل */
-    .slider-prev,
-    .slider-next {
-        width: 2.25rem;
-        height: 2.25rem;
-        padding: 0.5rem;
-    }
-
-    .slider-prev svg,
-    .slider-next svg {
-        width: 1rem;
-        height: 1rem;
-    }
-
-    /* ۲×۲ Grid - موبایل */
-    .best-sellers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-    }
-
-    /* کارت محصول - متناسب موبایل */
-    .product-card {
-        border-radius: 1.25rem; /* کمتر از desktop */
-    }
-
-    .product-card .aspect-square {
-        padding: 1rem; /* پدینگ کمتر داخل تصویر */
-    }
-
-    .product-card .p-5 {
-        padding: 0.75rem;
-    }
-
-    /* تیتر محصول - کوچکتر */
-    .product-card h3 {
-        font-size: 0.875rem;
-        line-height: 1.2;
-    }
-
-    /* توضیح محصول */
-    .product-card > div > p {
-        font-size: 0.75rem;
-    }
-
-    /* قیمت و دکمه خرید - عمودی */
-    .product-card .p-5 > div:last-child {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 0.5rem;
-    }
-
-    /* قیمت و رتینگ */
-    .product-card .p-5 > div:last-child > div {
-        flex-shrink: 0;
-    }
-
-    /* دکمه خرید - عرض کامل */
-    .product-card .p-5 > div:last-child button {
-        width: 100% !important;
-        padding: 0.5rem 0.75rem !important;
-        font-size: 0.75rem !important;
-        justify-content: center;
-    }
-
-    .product-card button svg {
-        width: 14px;
-        height: 14px;
     }
 }
 
@@ -233,6 +171,18 @@
 
     .trust-item p {
         font-size: 0.75rem;
+    }
+}
+
+/* ==================== عنوان بخش‌ها (مکمل‌های بدنسازی، آرایشی و ...) ==================== */
+@media (max-width: 640px) {
+    section h2 {
+        font-size: 1.65rem;
+        line-height: 1.35;
+    }
+
+    section .text-center.mb-16 {
+        margin-bottom: 2.5rem;
     }
 }
 
