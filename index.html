@@ -278,7 +278,7 @@
                             <svg class="doodle doodle-circle" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="15" stroke="#7CB9A8" stroke-width="2" stroke-dasharray="4 4"/></svg>
                             <svg class="doodle doodle-plus" viewBox="0 0 30 30" fill="none"><path d="M15 5V25M5 15H25" stroke="#7CB9A8" stroke-width="2"/></svg>
                         </div>
-                        <span class="absolute top-4 right-4 bg-brand text-white px-3 py-1 rounded-full text-xs font-bold">ویتامین</span>
+                        <span class="absolute top-4 right-4 bg-brand text-white px-3 py-1 rounded-full text-xs font-bold product-badge">ویتامین</span>
                         <img src="images/OIG2.jpeg" alt="Multi" class="product-image w-full h-full object-contain">
                     </div>
                     <div class="p-5">
@@ -877,24 +877,25 @@
                 <div>
                     <h4 class="font-bold text-gray-900 mb-6">دسترسی سریع</h4>
                     <ul class="space-y-4 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-brand transition-colors">فروشگاه</a></li>
-                        <li><a href="#" class="hover:text-brand transition-colors">درباره ما</a></li>
-                        <li><a href="#" class="hover:text-brand transition-colors">تماس با پشتیبانی</a></li>
+                        <li><a href="index.html" class="hover:text-brand transition-colors">فروشگاه</a></li>
+                        <li><a href="about.html" class="hover:text-brand transition-colors">درباره ما</a></li>
+                        <li><a href="contact.html" class="hover:text-brand transition-colors">تماس با پشتیبانی</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-gray-900 mb-6">قوانین</h4>
                     <ul class="space-y-4 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-brand transition-colors">شرایط بازگشت کالا</a></li>
-                        <li><a href="#" class="hover:text-brand transition-colors">حریم خصوصی</a></li>
+                        <li><a href="refund.html" class="hover:text-brand transition-colors">شرایط بازگشت کالا</a></li>
+                        <li><a href="privacy.html" class="hover:text-brand transition-colors">حریم خصوصی</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-gray-900 mb-6">خبرنامه</h4>
-                    <form class="flex gap-2">
-                        <input type="email" placeholder="ایمیل شما..." class="flex-1 bg-white border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand">
+                    <form id="newsletter-form" class="flex gap-2">
+                        <input type="email" id="newsletter-email" placeholder="ایمیل شما..." required class="flex-1 bg-white border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand">
                         <button type="submit" class="bg-brand hover:bg-brand-dark text-white px-4 py-2 rounded-lg text-sm font-medium">عضویت</button>
                     </form>
+                    <p id="newsletter-message" class="text-xs text-gray-400 mt-2 hidden"></p>
                 </div>
             </div>
             <div class="border-t border-gray-200 pt-8 text-center">

@@ -194,7 +194,56 @@
         // ==================== پایان منطق سبد خرید ====================
 
         // نمایش تعداد سبد خرید هنگام بارگذاری اولیه صفحه (اگر قبلاً چیزی ذخیره شده)
-        document.addEventListener('DOMContentLoaded', updateCartBadge);
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartBadge();
+            setupNewsletterForm();
+        });
+
+        // ==================== منطق فرم خبرنامه ====================
+        function setupNewsletterForm() {
+            const form = document.getElementById('newsletter-form');
+            if (!form) return;
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('newsletter-email').value.trim();
+                const message = document.getElementById('newsletter-message');
+
+                // اعتبارسنجی ایمیل
+                if (!email || !email.includes('@')) {
+                    showMessage(message, 'لطفاً ایمیل معتبر وارد کنید', 'error');
+                    return;
+                }
+
+                // ذخیره ایمیل در localStorage
+                let newsletters = JSON.parse(localStorage.getItem('vitapure_newsletters')) || [];
+                
+                if (newsletters.includes(email)) {
+                    showMessage(message, 'این ایمیل قبلاً عضو شده است', 'warning');
+                    return;
+                }
+
+                newsletters.push(email);
+                localStorage.setItem('vitapure_newsletters', JSON.stringify(newsletters));
+
+                showMessage(message, 'سپاس! به خبرنامه ما عضو شدید ✓', 'success');
+                document.getElementById('newsletter-email').value = '';
+
+                setTimeout(() => message.classList.add('hidden'), 3000);
+            });
+        }
+
+        function showMessage(element, text, type) {
+            element.innerText = text;
+            element.classList.remove('hidden', 'text-gray-400', 'text-red-500', 'text-yellow-600', 'text-green-600');
+            
+            if (type === 'error') element.classList.add('text-red-500');
+            else if (type === 'warning') element.classList.add('text-yellow-600');
+            else if (type === 'success') element.classList.add('text-green-600');
+            else element.classList.add('text-gray-400');
+        }
+        // ==================== پایان منطق فرم خبرنامه ====================
+
 
         // ==================== منطق صفحه تسویه‌حساب (checkout.html) ====================
 
